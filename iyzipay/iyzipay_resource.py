@@ -999,7 +999,7 @@ class SubscriptionCheckoutDirect(IyzipayResource):
         return self.connect('POST', '/v2/subscription/checkoutform/', options, request)
 
 
-class SubscriptionDetail(iyzipay.SubscriptionCheckoutDirect):
+class SubscriptionDetail(SubscriptionCheckoutDirect):
     def retrieve(self, request, options):
         if request.get('subscriptionReferenceCode') is None:
             raise Exception('subscriptionReferenceCode')
