@@ -998,3 +998,22 @@ class SubscriptionCheckoutDirect(IyzipayResource):
             raise Exception('token must be in request')
         return self.connect('POST', '/v2/subscription/checkoutform/', options, request)
 
+
+class SubscriptionDetail(iyzipay.SubscriptionCheckoutDirect):
+    def retrieve(self, request, options):
+        if request.get('subscriptionReferenceCode') is None:
+            raise Exception('subscriptionReferenceCode')
+        subscriptionReferenceCode = str(request.get('subscriptionReferenceCode'))
+        return self.connect('GET', '/v2/subscription/subscriptions/' + subscriptionReferenceCode, options, request)
+
+    def cancel(self, request, options):
+        if request.get('subscriptionReferenceCode') is None:
+            raise Exception('subscriptionReferenceCode')
+        subscriptionReferenceCode = str(request.get('subscriptionReferenceCode'))
+        return self.connect('POST', '/v2/subscription/subscriptions/' + subscriptionReferenceCode + '/cancel', options, request)
+
+    def upgrade(self, request, options):
+        if request.get('subscriptionReferenceCode') is None:
+            raise Exception('subscriptionReferenceCode')
+        subscriptionReferenceCode = str(request.get('subscriptionReferenceCode'))
+        return self.connect('POST', '/v2/subscription/subscriptions/' + subscriptionReferenceCode + '/upgrade', options, request)
