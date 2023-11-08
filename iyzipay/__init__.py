@@ -55,6 +55,7 @@ from iyzipay.iyzipay_resource import (  # noqa
     SubscriptionCustomer,
     SubscriptionCheckoutForm,
     SubscriptionCheckoutDirect,
+    SubscriptionDetail,
     IyziFileBase64Encoder)
 
 from iyzipay.pki_builder import (  # noqa
